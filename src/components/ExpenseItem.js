@@ -5,10 +5,7 @@ import Card from './UI/Card';
 import './ExpenseItem.css';
 
 const ExpenseItem = (props) => {
-	const buttonClickHandler = (e) => {
-		setTitle('Update Title');
-		console.log(title);
-	};
+	console.log('ExpenseItem evaluated by React');
 
 	return (
 		<Card className='expense-item'>
