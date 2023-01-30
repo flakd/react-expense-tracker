@@ -41,22 +41,10 @@ const App = () => {
 		//console.log(expenses);
 	};
 
-	let filteredExpenses = [];
-	const filterExpensesHandler = (selectedYear) => {
-		filteredExpenses = expenses.filter(
-			(expense) => expense.date.getFullYear() === selectedYear
-		);
-		console.log(filteredExpenses);
-	};
-
 	return (
 		<div>
 			<NewExpense onAddExpense={addExpenseHandler} />
-			<Expenses
-				/* expenses={filteredExpenses} */
-				expenses={expenses}
-				onFilterExpenses={filterExpensesHandler}
-			/>
+			<Expenses items={expenses} />
 		</div>
 	);
 };

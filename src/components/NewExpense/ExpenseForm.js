@@ -109,7 +109,7 @@ const ExpenseForm = (props) => {
 					<input
 						id='date'
 						type='date'
-						min='2023-01-01'
+						min='2019-01-01'
 						max={maxDate}
 						/* defaultValue={todayDate} */
 						value={enteredDate}
