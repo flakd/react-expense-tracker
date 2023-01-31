@@ -15,62 +15,30 @@ const ExpenseForm = (props) => {
 	const [enteredTitle, setEnteredTitle] = useState('');
 	const [enteredAmount, setEnteredAmount] = useState('');
 	const [enteredDate, setEnteredDate] = useState(todayDate);
-	// const [userInput, setUserInput] = useState({
-	// 	enteredTitle: '',
-	// 	enteredAmount: '',
-	// 	enteredDate: '',
-	// });
 	const errMsg = 'Title must be at least 3 characters long';
 	const [message, setMessage] = useState(errMsg);
 
 	const titleChangeHandler = (e) => {
 		//console.log('e.target.value: ', e.target.value);
 		setEnteredTitle(e.target.value);
-		// setUserInput({
-		// 	...userInput,
-		// 	enteredTitle: e.target.value,
-		// });
-		// setUserInput((prevState) => {
-		// 	return {
-		// 		...prevState,
-		// 		enteredTitle: e.target.value,
-		// 	};
-		// });
 		if (e.target.value.toString().length > 2) {
 			setMessage('Valid title');
 		} else {
 			setMessage(errMsg);
 		}
-		//console.log('enteredTitle: ', enteredTitle);
-		//console.log('enteredTitle: ', userInput.enteredTitle);
 	};
 	const amountChangeHandler = (e) => {
-		//console.log('e.target.value: ', e.target.value);
 		setEnteredAmount(e.target.value);
-		// setUserInput({
-		// 	...userInput,
-		// 	enteredAmount: e.target.value,
-		// });
-		//console.log('enteredAmount: ', userInput.enteredAmount);
-		//console.log('enteredAmount: ', enteredAmount);
 	};
 	const dateChangeHandler = (e) => {
-		//console.log('current value: ', e.target.value);
 		setEnteredDate(e.target.value);
-		// setUserInput({
-		// 	...userInput,
-		// 	enteredDate: e.target.value,
-		// });
-		//console.log('enteredDate: ', enteredDate);
-		//console.log('enteredDate: ', userInput.enteredDate);
 	};
+
 	const submitHandler = (e) => {
 		e.preventDefault();
-		//console.log('button clicked/ form submit fired, but prevented');
-		//console.log(e);
 		const expenseData = {
 			title: enteredTitle,
-			amount: enteredAmount,
+			amount: +enteredAmount,
 			date: new Date(enteredDate),
 		};
 		props.onSaveExpenseData(expenseData);
@@ -78,6 +46,14 @@ const ExpenseForm = (props) => {
 		setEnteredAmount('');
 		setEnteredDate(todayDate);
 	};
+
+	const cancelClickHandler = (e) => {
+		setEnteredTitle('');
+		setEnteredAmount('');
+		setEnteredDate(todayDate);
+		props.onCancel();
+	};
+
 	return (
 		<form onSubmit={submitHandler}>
 			<div className='new-expense__controls'>
@@ -117,6 +93,12 @@ const ExpenseForm = (props) => {
 					/>
 				</div>
 				<div className='new-expense__actions'>
+					<button
+						type='button'
+						onClick={cancelClickHandler}
+					>
+						Cancel
+					</button>
 					<button type='submit'>Add Expense</button>
 				</div>
 			</div>

@@ -1,6 +1,6 @@
 //import ExpenseItem from './components/ExpenseItem';
 import {useState} from 'react';
-import Expenses from './components/Expenses';
+import Expenses from './components/Expenses/Expenses';
 import NewExpense from './components/NewExpense/NewExpense';
 
 const App = () => {
@@ -31,12 +31,12 @@ const App = () => {
 		},
 	]);
 
-	const addExpenseHandler = (expense) => {
-		//console.log(expenseData);
+	const addExpenseHandler = (newExpense) => {
 		//console.log(expenses);
-		setExpenses((prevState) => {
+		setExpenses((prevExpenses) => {
 			//console.log(expenses.concat(expenses));
-			return expenses.concat(expense);
+			//return expenses.concat(expense);
+			return [...prevExpenses, newExpense];
 		});
 		//console.log(expenses);
 	};
