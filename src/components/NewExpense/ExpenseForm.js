@@ -1,28 +1,19 @@
 import {useState} from 'react';
 import './ExpenseForm.css';
+import {todayDateAsString} from '../../helpers/date';
 
 const ExpenseForm = (props) => {
-	const todayDate = (() => {
-		const date = new Date();
-		const month = date.toLocaleString('en-US', {month: '2-digit'});
-		const day = date.toLocaleString('en-US', {day: '2-digit'});
-		const year = date.getFullYear();
-		//console.log(dateString);
-		return year + '-' + month + '-' + day;
-	})();
-	const maxDate = todayDate;
-
 	const [enteredTitle, setEnteredTitle] = useState('');
 	const [enteredAmount, setEnteredAmount] = useState('');
-	const [enteredDate, setEnteredDate] = useState(todayDate);
-	const errMsg = 'Title must be at least 3 characters long';
+	const [enteredDate, setEnteredDate] = useState(todayDateAsString);
+	const errMsg = <p>Title must be at least 3 characters long</p>;
 	const [message, setMessage] = useState(errMsg);
 
 	const titleChangeHandler = (e) => {
 		//console.log('e.target.value: ', e.target.value);
 		setEnteredTitle(e.target.value);
 		if (e.target.value.toString().length > 2) {
-			setMessage('Valid title');
+			setMessage(<p>&nbsp;</p>);
 		} else {
 			setMessage(errMsg);
 		}
@@ -42,16 +33,18 @@ const ExpenseForm = (props) => {
 			date: new Date(enteredDate),
 		};
 		props.onSaveExpenseData(expenseData);
-		setEnteredTitle('');
-		setEnteredAmount('');
-		setEnteredDate(todayDate);
+		resetFormFields();
 	};
 
 	const cancelClickHandler = (e) => {
+		props.onCancel();
+		resetFormFields();
+	};
+
+	const resetFormFields = () => {
 		setEnteredTitle('');
 		setEnteredAmount('');
-		setEnteredDate(todayDate);
-		props.onCancel();
+		setEnteredDate(todayDateAsString);
 	};
 
 	return (
@@ -86,7 +79,7 @@ const ExpenseForm = (props) => {
 						id='date'
 						type='date'
 						min='2019-01-01'
-						max={maxDate}
+						max={todayDateAsString}
 						/* defaultValue={todayDate} */
 						value={enteredDate}
 						onChange={dateChangeHandler}
