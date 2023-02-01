@@ -23,7 +23,7 @@ const Expenses = (props) => {
 			return expense.date.getFullYear().toString() === filteredYear;
 		});
 	}
-	let sortedFilteredExpenses = filteredExpenses.sort((a, b) => {
+	const sortedFilteredExpenses = filteredExpenses.sort((a, b) => {
 		//make sure your dates are Dates, if string convert them with new Date(myDate)
 		//return b.date - a.date;  //sort reverse chronologically
 		return a.date - b.date; //sort chronologically
@@ -40,7 +40,10 @@ const Expenses = (props) => {
 					selected={filteredYear}
 					filteredExpenses={filteredExpenses}
 				/>
-				<ExpensesList filteredExpenses={sortedFilteredExpenses} />
+				<ExpensesList
+					selected={filteredYear}
+					filteredExpenses={sortedFilteredExpenses}
+				/>
 			</Card>
 		</div>
 	);

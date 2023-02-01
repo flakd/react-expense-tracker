@@ -5,7 +5,7 @@ const ExpensesList = (props) => {
 	if (props.filteredExpenses.length === 0) {
 		return (
 			<h2 className='expenses-list__fallback'>
-				No Expenses found for selected year(s)
+				No Expenses found for {props.selected}
 			</h2>
 		);
 	}
