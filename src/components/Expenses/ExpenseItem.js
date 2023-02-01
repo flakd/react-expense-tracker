@@ -3,6 +3,10 @@ import Card from '../UI/Card';
 import './ExpenseItem.css';
 
 const ExpenseItem = (props) => {
+	const clickDeleteHandler = (e) => {
+		console.log('clicked ' + e.target.id + "on ITEM '%s'", props.id);
+		props.onClickDelete(props.id);
+	};
 	return (
 		<li>
 			<Card className='expense-item'>
@@ -15,6 +19,14 @@ const ExpenseItem = (props) => {
 							currency: 'USD',
 						})}
 					</div>
+					<i
+						id='delete'
+						style={{fontSize: '24px', color: 'red', cursor: 'pointer'}}
+						className='fa'
+						onClick={clickDeleteHandler}
+					>
+						&#xf00d;
+					</i>
 				</div>
 			</Card>
 		</li>

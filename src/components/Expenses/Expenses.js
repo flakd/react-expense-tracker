@@ -40,6 +40,7 @@ const Expenses = (props) => {
 				<ExpensesList
 					selectedYear={filteredYear}
 					filteredExpenses={sortedFilteredExpenses}
+					onDeleteExpenseItem={props.onDeleteExpense}
 				/>
 			</Card>
 		</div>
