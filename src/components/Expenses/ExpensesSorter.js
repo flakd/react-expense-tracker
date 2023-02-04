@@ -1,9 +1,16 @@
 import React from 'react';
 
-const onClickSorter = (e) => {
-	console.log(e.target);
-};
-const ExpensesSorter = ({onClickSort}) => {
+const ExpensesSorter = ({onSort}) => {
+	const onClickSort = (e) => {
+		console.log(e.target);
+		const buttons = document.querySelectorAll('.sort');
+		console.log(buttons);
+		buttons.forEach((button, index) => {
+			button.style.textDecoration = 'none';
+		});
+		e.target.style.textDecoration = 'underline';
+		onSort(e);
+	};
 	return (
 		<div style={{display: 'flex'}}>
 			<div

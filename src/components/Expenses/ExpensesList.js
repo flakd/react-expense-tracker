@@ -11,18 +11,20 @@ const ExpensesList = (props) => {
 	}
 
 	return (
-		<ul className='expenses-list'>
-			{props.filteredExpenses.map((expense) => (
-				<ExpenseItem
-					key={expense.id}
-					id={expense.id}
-					title={expense.title}
-					date={expense.date}
-					amount={expense.amount}
-					onClickDelete={props.onDeleteExpenseItem}
-				/>
-			))}
-		</ul>
+		<div className='expenses-list-container'>
+			<ul className='expenses-list'>
+				{props.filteredExpenses.map((expense) => (
+					<ExpenseItem
+						key={expense.id}
+						id={expense.id}
+						title={expense.title}
+						date={expense.date}
+						amount={expense.amount}
+						onClickDelete={props.onDeleteExpenseItem}
+					/>
+				))}
+			</ul>
+		</div>
 	);
 };
 export default ExpensesList;
