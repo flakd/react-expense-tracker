@@ -109,6 +109,7 @@ const Expenses = (props) => {
 					/>
 					<ExpensesSorterRight onSort={sortExpensesHandler} />
 					<ExpenseFilterCollapseButton
+						isChartShown={isChartShown}
 						onToggleCollapseButton={toggleCollapseHandler}
 					/>
 				</div>

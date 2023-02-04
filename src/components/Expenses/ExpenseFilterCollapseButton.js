@@ -1,15 +1,26 @@
 import React from 'react';
 
-const ExpenseFilterCollapseButton = ({onToggleCollapseButton}) => {
+const ExpenseFilterCollapseButton = ({
+	isChartShown,
+	onToggleCollapseButton,
+}) => {
+	const onClickToggleCollapseButton = (e) => {
+		if (isChartShown) {
+			e.target.innerHTML = '&#x25BC';
+		} else {
+			e.target.innerHTML = '&#x25B2';
+		}
+		onToggleCollapseButton();
+	};
 	return (
 		<div>
 			<button
 				style={{marginLeft: '40px', color: 'white', backgroundColor: '#40005d'}}
 				id='sortAmountAsc'
 				className='sort'
-				onClick={onToggleCollapseButton}
+				onClick={onClickToggleCollapseButton}
 			>
-				&#x25B2;
+				&#x25BC;
 			</button>
 		</div>
 	);
