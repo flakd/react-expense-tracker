@@ -1,0 +1,7 @@
+.sort {
+	height: 20px;
+}
+.sorter {
+	white-space: 'nowrap';
+	display: inline-block;
+}

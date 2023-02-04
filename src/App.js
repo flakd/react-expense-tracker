@@ -32,13 +32,9 @@ const App = () => {
 	]);
 
 	const addExpenseHandler = (newExpense) => {
-		//console.log(expenses);
 		setExpenses((prevExpenses) => {
-			//console.log(expenses.concat(expenses));
-			//return expenses.concat(expense);
 			return [...prevExpenses, newExpense];
 		});
-		//console.log(expenses);
 	};
 
 	const deleteExpenseHandler = (expenseId) => {
