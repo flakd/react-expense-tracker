@@ -5,12 +5,15 @@ import './Expenses.css';
 import ExpenseFilter from './ExpensesFilter';
 import ExpensesChart from './ExpensesChart';
 import ExpensesList from './ExpensesList';
-import ExpensesSorter from './ExpensesSorter';
+import ExpensesSorterLeft from './ExpensesSorterLeft';
+import ExpensesSorterRight from './ExpensesSorterRight';
+import ExpenseFilterCollapseButton from './ExpenseFilterCollapseButton';
 
 const Expenses = (props) => {
 	const expenses = props.items;
 	const [filteredYear, setFilteredYear] = useState('ALL');
 	const [clickedButton, setClickedButton] = useState('sortAmountDsc');
+	const [isChartShown, setIsChartShown] = useState(false);
 
 	const filterChangeHandler = (selectedYear) => {
 		console.log(selectedYear);
@@ -31,6 +34,10 @@ const Expenses = (props) => {
 		console.log('inside sortExpenseHandler');
 		console.log(e.target.id);
 		setClickedButton(e.target.id); //using State here
+	};
+
+	const toggleCollapseHandler = (e) => {
+		setIsChartShown(!isChartShown);
 	};
 
 	switch (clickedButton) {
@@ -93,12 +100,18 @@ const Expenses = (props) => {
 	return (
 		<div>
 			<Card className='expenses'>
-				<ExpenseFilter
-					selectedYear={filteredYear}
-					onChangeFilter={filterChangeHandler}
-				/>
-				<ExpensesChart filteredExpenses={filteredExpenses} />
-				<ExpensesSorter onSort={sortExpensesHandler} />
+				{isChartShown && <ExpensesChart filteredExpenses={filteredExpenses} />}
+				<div style={{display: 'inline-flex'}}>
+					<ExpensesSorterLeft onSort={sortExpensesHandler} />
+					<ExpenseFilter
+						selectedYear={filteredYear}
+						onChangeFilter={filterChangeHandler}
+					/>
+					<ExpensesSorterRight onSort={sortExpensesHandler} />
+					<ExpenseFilterCollapseButton
+						onToggleCollapseButton={toggleCollapseHandler}
+					/>
+				</div>
 				<ExpensesList
 					selectedYear={filteredYear}
 					filteredExpenses={sortedFilteredExpenses}

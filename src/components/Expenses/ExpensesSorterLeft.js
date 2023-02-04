@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ExpensesSorter = ({onSort}) => {
+const ExpensesSorterLeft = ({onSort}) => {
 	const onClickSort = (e) => {
 		console.log(e.target);
 		const buttons = document.querySelectorAll('.sort');
@@ -12,11 +12,11 @@ const ExpensesSorter = ({onSort}) => {
 		onSort(e);
 	};
 	return (
-		<div style={{display: 'flex'}}>
+		<div style={{display: 'inline-flex'}}>
 			<div
 				id='date-sorters'
 				className='sorter'
-				style={{paddingLeft: '20px', whiteSpace: 'nowrap'}}
+				style={{paddingLeft: '15px', whiteSpace: 'nowrap'}}
 			>
 				<button
 					id='sortDateDsc'
@@ -53,28 +53,8 @@ const ExpensesSorter = ({onSort}) => {
 					&#x25B2;
 				</button>
 			</div>
-			<div
-				id='amount-sorters'
-				className='sorter'
-				style={{paddingLeft: '40%', whiteSpace: 'nowrap'}}
-			>
-				<button
-					id='sortAmountDsc'
-					className='sort'
-					onClick={onClickSort}
-				>
-					&#x25BC;
-				</button>
-				<button
-					id='sortAmountAsc'
-					className='sort'
-					onClick={onClickSort}
-				>
-					&#x25B2;
-				</button>
-			</div>
 		</div>
 	);
 };
 
-export default ExpensesSorter;
+export default ExpensesSorterLeft;

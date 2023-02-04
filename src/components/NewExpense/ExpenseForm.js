@@ -1,11 +1,11 @@
 import {useState} from 'react';
 import './ExpenseForm.css';
-import {todayDateAsString} from '../../helpers/date';
+import DateHelper from '../../helpers/DateHelper';
 
 const ExpenseForm = (props) => {
 	const [enteredTitle, setEnteredTitle] = useState('');
 	const [enteredAmount, setEnteredAmount] = useState('');
-	const [enteredDate, setEnteredDate] = useState(todayDateAsString);
+	const [enteredDate, setEnteredDate] = useState(DateHelper.todayDateAsString);
 	const errMsg = <p>Title must be at least 3 characters long</p>;
 	const [message, setMessage] = useState(errMsg);
 
@@ -51,7 +51,7 @@ const ExpenseForm = (props) => {
 	const resetFormFields = () => {
 		setEnteredTitle('');
 		setEnteredAmount('');
-		setEnteredDate(todayDateAsString);
+		setEnteredDate(DateHelper.todayDateAsString);
 	};
 
 	return (
@@ -86,7 +86,7 @@ const ExpenseForm = (props) => {
 						id='date'
 						type='date'
 						min='2019-01-01'
-						max={todayDateAsString}
+						max={DateHelper.todayDateAsString}
 						/* defaultValue={todayDate} */
 						value={enteredDate}
 						onChange={dateChangeHandler}
