@@ -8,6 +8,7 @@ import ExpensesList from './ExpensesList';
 import ExpensesSorterLeft from './ExpensesSorterLeft';
 import ExpensesSorterRight from './ExpensesSorterRight';
 import ExpenseFilterCollapseButton from './ExpenseFilterCollapseButton';
+import SortHelper from '../../helpers/SortHelper';
 
 const Expenses = (props) => {
 	const expenses = props.items;
@@ -28,7 +29,11 @@ const Expenses = (props) => {
 			return expense.date.getFullYear().toString() === filteredYear;
 		});
 	}
-	let sortedFilteredExpenses = [];
+	//let sortedFilteredExpenses = SortHelper.getSortedExpenses(
+	let sortedFilteredExpenses = SortHelper.getSortedExpenses(
+		clickedButton,
+		filteredExpenses
+	);
 
 	const sortExpensesHandler = (e) => {
 		console.log('inside sortExpenseHandler');
@@ -39,63 +44,6 @@ const Expenses = (props) => {
 	const toggleCollapseHandler = (e) => {
 		setIsChartShown(!isChartShown);
 	};
-
-	switch (clickedButton) {
-		case 'sortDateDsc':
-			sortedFilteredExpenses = filteredExpenses.sort((a, b) => {
-				//console.log(e.target.id);
-				return b.date - a.date; //sort reverse chronologically
-			});
-			break;
-		case 'sortDateAsc':
-			sortedFilteredExpenses = filteredExpenses.sort((a, b) => {
-				return a.date - b.date; //sort chronologically
-			});
-			break;
-		case 'sortTitleDsc':
-			console.log(filteredExpenses);
-			//sortedFilteredExpenses = () => {
-			console.log(
-				filteredExpenses
-					.map((expense) => {
-						return expense.title.toLowerCase();
-					})
-					.sort()
-			);
-			sortedFilteredExpenses = filteredExpenses.sort((a, b) =>
-				a.title.toLowerCase() < b.title.toLowerCase()
-					? 1
-					: b.title.toLowerCase() < a.title.toLowerCase()
-					? -1
-					: 0
-			);
-			break;
-		case 'sortTitleAsc':
-			sortedFilteredExpenses = filteredExpenses.sort((a, b) =>
-				a.title.toLowerCase() > b.title.toLowerCase()
-					? 1
-					: b.title.toLowerCase() > a.title.toLowerCase()
-					? -1
-					: 0
-			);
-			break;
-		case 'sortAmountDsc':
-			sortedFilteredExpenses = filteredExpenses.sort((a, b) => {
-				return b.amount - a.amount; //sort descending by amount
-			});
-			break;
-		case 'sortAmountAsc':
-			sortedFilteredExpenses = filteredExpenses.sort((a, b) => {
-				return a.amount - b.amount; //sort ascending by amount
-			});
-			break;
-		default: //sort chronologically
-			console.log('default executed');
-			sortedFilteredExpenses = filteredExpenses.sort((a, b) => {
-				return a.date - b.date; //sort chronologically
-			});
-			break;
-	}
 
 	return (
 		<div>

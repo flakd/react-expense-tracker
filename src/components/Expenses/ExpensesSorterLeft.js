@@ -1,6 +1,4 @@
-import React from 'react';
-
-const ExpensesSorterLeft = ({onSort}) => {
+const ExpensesSorterLeft = (props) => {
 	const onClickSort = (e) => {
 		console.log(e.target);
 		const buttons = document.querySelectorAll('.sort');
@@ -9,8 +7,9 @@ const ExpensesSorterLeft = ({onSort}) => {
 			button.style.textDecoration = 'none';
 		});
 		e.target.style.textDecoration = 'underline';
-		onSort(e);
+		props.onSort(e);
 	};
+
 	return (
 		<div style={{display: 'inline-flex'}}>
 			<div
