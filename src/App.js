@@ -35,6 +35,23 @@ const App = () => {
 		setExpenses((prevExpenses) => {
 			return [...prevExpenses, newExpense];
 		});
+
+		const requestOptions = {
+			method: 'PUT',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify(newExpense),
+		};
+		fetch(
+			'https://react-expense-tracker-5097e-default-rtdb.firebaseio.com/expenses.json',
+			requestOptions
+		)
+			.then((response) => response.json())
+			.then((data) => console.log(data));
+		/* 			const data = await response.json();
+			console.log(data);
+			console.log(data.updatedAt);
+ 		};*/
+		//addExpense();
 	};
 
 	const deleteExpenseHandler = (expenseId) => {
