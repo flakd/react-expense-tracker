@@ -49,6 +49,10 @@ const ExpenseForm = (props) => {
 	};
 
 	const resetFormFields = () => {
+		const expensesListContainer = document.querySelector(
+			'.expenses-list-container'
+		);
+		expensesListContainer.style.height = '36rem';
 		setEnteredTitle('');
 		setEnteredAmount('');
 		setEnteredDate(DateHelper.todayDateAsString);
@@ -66,7 +70,7 @@ const ExpenseForm = (props) => {
 						onChange={titleChangeHandler}
 						placeholder='Please enter a description/title'
 					/>
-					<p>{message}</p>
+					<div>{message}</div>
 				</div>
 				<div className='new-expense__control'>
 					<label htmlFor='amount'>Amount</label>

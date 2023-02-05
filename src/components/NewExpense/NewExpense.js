@@ -22,6 +22,12 @@ const NewExpense = (props) => {
 		setIsEditing(false);
 	};
 
+	if (isEditing) {
+		const expensesListContainer = document.querySelector(
+			'.expenses-list-container'
+		);
+		expensesListContainer.style.height = '23rem';
+	}
 	return (
 		<div className='new-expense'>
 			{!isEditing && (

@@ -1,14 +1,17 @@
-import React from 'react';
-
 const ExpenseFilterCollapseButton = ({
 	isChartShown,
 	onToggleCollapseButton,
 }) => {
 	const onClickToggleCollapseButton = (e) => {
+		const expensesListContainer = document.querySelector(
+			'.expenses-list-container'
+		);
 		if (isChartShown) {
 			e.target.innerHTML = '&#x25BC';
+			expensesListContainer.style.height = '36rem';
 		} else {
 			e.target.innerHTML = '&#x25B2';
+			expensesListContainer.style.height = '26rem';
 		}
 		onToggleCollapseButton();
 	};
