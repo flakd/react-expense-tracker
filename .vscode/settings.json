@@ -1,0 +1,13 @@
+{
+  "prettier.jsxSingleQuote": true,
+  "prettier.semi": true,
+  "prettier.singleAttributePerLine": true,
+  "prettier.singleQuote": true,
+  "prettier.useTabs": false,
+  "eslint.enable": true,
+  "eslint.alwaysShowStatus": true,
+  "emmet.useInlineCompletions": true,
+  "emmet.triggerExpansionOnTab": true,
+  "emmet.showSuggestionsAsSnippets": true,
+  "eslint.quiet": false
+}
