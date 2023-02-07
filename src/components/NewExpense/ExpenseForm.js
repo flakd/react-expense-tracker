@@ -4,16 +4,16 @@ import DateHelper from '../../helpers/DateHelper';
 import CategoryComboDropdown from './CategoryComboDropdown';
 
 import wtf from '../../data/categoriesData';
-console.log(wtf);
+console.log('categoriesData external = ', wtf);
 
 const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState('');
   const [enteredAmount, setEnteredAmount] = useState('');
   const [enteredDate, setEnteredDate] = useState(DateHelper.todayDateAsString);
   const [enteredCategory, setEnteredCategory] = useState('');
-  const errMsg = <p>Title must be at least 3 characters long</p>;
+  const errMsg = <div>Title must be at least 3 characters long</div>;
   const [message, setMessage] = useState(errMsg);
-  //const categories = require('../../data/categoriesData');
+  const categories = require('../../data/categoriesData');
   //const [categories, setCategories] = useState([]);
 
   /*   const categoriesData = [
@@ -34,7 +34,7 @@ const ExpenseForm = (props) => {
     //console.log('e.target.value: ', e.target.value);
     setEnteredTitle(e.target.value);
     if (e.target.value.toString().length > 2) {
-      setMessage(<p>&nbsp;</p>);
+      setMessage(<div>&nbsp;</div>);
     } else {
       setMessage(errMsg);
     }
@@ -94,7 +94,7 @@ const ExpenseForm = (props) => {
             onChange={titleChangeHandler}
             placeholder='Please enter a description/title'
           />
-          <div>{message}</div>
+          {message}
         </div>
         <div className='new-expense__control'>
           <label htmlFor='amount'>Amount</label>
@@ -103,7 +103,6 @@ const ExpenseForm = (props) => {
             type='number'
             min='0.01'
             step='0.01'
-            /* defaultValue={0} */
             value={enteredAmount}
             onChange={amountChangeHandler}
           />
