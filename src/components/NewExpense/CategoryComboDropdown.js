@@ -21,18 +21,21 @@ const CategoryComboDropdown = (props) => {
     {id: 12, name: 'Exercise'},
   ];
   console.log('categories = ', categories);
-  const comboChangeHandler = (e) => {};
+  const setCategoryMatchHandler = (doesComboMatch, cat) => {
+    setCategory(cat);
+    console.log('setCategoryMatchHandler: cat= ', cat);
+    console.log('setCategoryMatchHandler: category=', category);
+    props.onComboValidMatch(doesComboMatch, category);
+  };
   return (
-    <div>
-      {
-        <ComboDropdown
-          name='category'
-          value={category}
-          onComboChange={comboChangeHandler}
-          options={categories}
-        />
-      }
-    </div>
+    <ComboDropdown
+      name='category'
+      value={category}
+      /*           onComboChange={comboChangeHandler}
+       */ onSetParentComboMatch={setCategoryMatchHandler}
+      options={categories}
+      customStyle=''
+    />
   );
 };
 export default CategoryComboDropdown;

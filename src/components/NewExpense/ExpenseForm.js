@@ -1,35 +1,24 @@
 import {useState} from 'react';
 import './ExpenseForm.css';
 import DateHelper from '../../helpers/DateHelper';
-import CategoryComboDropdown from './CategoryComboDropdown';
+import ComboDropdown from '../UI/ComboDropdown';
 
-import wtf from '../../data/categoriesData';
-console.log('categoriesData external = ', wtf);
+/* import categoriesData from '../../data/categoriesData';
+console.log('categoriesData external = ', categoriesData); */
 
 const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState('');
   const [enteredAmount, setEnteredAmount] = useState('');
   const [enteredDate, setEnteredDate] = useState(DateHelper.todayDateAsString);
   const [enteredCategory, setEnteredCategory] = useState('');
+
+  const [isCategoryAMatch, setIsCategoriesAMatch] = useState(false);
   const errMsg = <div>Title must be at least 3 characters long</div>;
   const [message, setMessage] = useState(errMsg);
-  const categories = require('../../data/categoriesData');
-  //const [categories, setCategories] = useState([]);
 
-  /*   const categoriesData = [
-    {id: 0, name: 'Toiletries'},
-    {id: 1, name: 'Electronics'},
-    {id: 2, name: 'Insurance'},
-    {id: 3, name: 'Furniture'},
-    {id: 4, name: 'Utilities'},
-    {id: 5, name: 'Groceries'},
-    {id: 6, name: 'Pharmacy'},
-    {id: 7, name: 'Doctors'},
-    {id: 8, name: 'Auto'},
-  ];
-  const categories = categoriesData; */
+  const categories = require('../../data/categoriesData.json');
+  console.log('categories json=', categories);
 
-  //setCategories(wtf);
   const titleChangeHandler = (e) => {
     //console.log('e.target.value: ', e.target.value);
     setEnteredTitle(e.target.value);
@@ -45,30 +34,40 @@ const ExpenseForm = (props) => {
   const dateChangeHandler = (e) => {
     setEnteredDate(e.target.value);
   };
-  const categoryChangeHandler = (e) => {
-    setEnteredCategory(e.target.value);
-  };
+  //there's no categoryChangeHandler here, it's in the ComboDropDown.js
 
+  const comboChangeHandler = (isMatch, cat) => {
+    //setIsCategoriesAMatch(true);
+    setIsCategoriesAMatch(isMatch);
+    setEnteredCategory(cat);
+  };
   const submitHandler = (e) => {
     e.preventDefault();
+  };
+
+  const cancelClickHandler = (e) => {
+    props.onCancel();
+    resetFormFields();
+  };
+  const clickAddExpenseHandler = (e) => {
+    /* this is our real submit handler, b/c otherwise any other button on the
+      form will submit - so we will prevent default on the actual 
+      submitHandler function */
     if (
       !enteredTitle ||
       !enteredAmount ||
       enteredAmount === '0' ||
-      !enteredDate
+      !enteredDate ||
+      !isCategoryAMatch
     )
       return;
     const expenseData = {
       title: enteredTitle,
       amount: +enteredAmount,
       date: new Date(enteredDate),
+      category: enteredCategory,
     };
     props.onSaveExpenseData(expenseData);
-    resetFormFields();
-  };
-
-  const cancelClickHandler = (e) => {
-    props.onCancel();
     resetFormFields();
   };
 
@@ -119,7 +118,13 @@ const ExpenseForm = (props) => {
             onChange={dateChangeHandler}
           />
         </div>
-        <CategoryComboDropdown />
+        <ComboDropdown
+          name='category'
+          value={enteredCategory}
+          onComboChange={comboChangeHandler}
+          options={categories}
+          customStyle=''
+        />
         <div className='new-expense__actions'>
           <button
             type='button'
@@ -127,7 +132,12 @@ const ExpenseForm = (props) => {
           >
             Cancel
           </button>
-          <button type='submit'>Add Expense</button>
+          <button
+            type='button'
+            onClick={clickAddExpenseHandler}
+          >
+            Add Expense
+          </button>
         </div>
       </div>
     </form>

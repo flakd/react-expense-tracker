@@ -1,33 +1,33 @@
 .expenses-filter {
-	color: white;
-	padding: 0 1rem;
+  color: white;
+  padding: 0 1rem;
 }
 
 .expenses-filter__control {
-	display: inline-flex;
-	width: 100%;
-	align-items: center;
-	/* justify-content: space-between; */
-	/* 	justify-content: right;
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+  /* justify-content: space-between; */
+  /* 	justify-content: right;
  */
-	margin: 0 0 1rem 1rem;
+  margin: 0 0 1rem 1rem;
 }
 
 .expenses-filter label {
-	display: block;
-	font-weight: bold;
-	width: 110px;
-	margin: 0 0rem 0 0;
+  display: block;
+  font-weight: bold;
+  width: 50px;
+  margin: 0 0rem 0 0;
 }
 
 .expenses-filter select {
-	font: inherit;
-	padding: 0rem 3rem;
-	margin-top: 0.2rem;
-	font-weight: bold;
-	color: white;
-	border-radius: 6px;
-	border-width: 0.1rem;
-	border-color: white;
-	background-color: #40005d;
+  font: inherit;
+  padding: 0rem 3rem;
+  margin-top: 0.2rem;
+  font-weight: bold;
+  color: white;
+  border-radius: 6px;
+  border-width: 0.1rem;
+  border-color: white;
+  background-color: #40005d;
 }

@@ -1,4 +1,3 @@
-//import ExpenseItem from './components/ExpenseItem';
 import {useState} from 'react';
 import Expenses from './components/Expenses/Expenses';
 import NewExpense from './components/NewExpense/NewExpense';
@@ -47,15 +46,22 @@ const App = () => {
     console.log('one or more of the IDs cannot be converted to a number');
   }
   if (typeof maxId !== 'number') maxId = Math.random();
+
+  let isEditing = false;
+  const closeNewExpenses = () => {
+    isEditing = false;
+  };
   return (
     <div>
       <NewExpense
         onAddExpense={addExpenseHandler}
         latestId={maxId}
+        openExpenseForm={isEditing}
       />
       <Expenses
         items={expenses}
         onDeleteExpense={deleteExpenseHandler}
+        closeNewExpenseForm={closeNewExpenses}
       />
     </div>
   );
