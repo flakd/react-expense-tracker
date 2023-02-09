@@ -3,7 +3,8 @@ import {useState} from 'react';
 import Card from '../UI/Card';
 import './Expenses.css';
 import ExpenseFilter from './ExpensesFilter';
-import ExpensesChart from './ExpensesChart';
+import ExpensesByMonthChart from './ExpensesByMonthChart';
+import ExpensesByCategoryChart from './ExpensesByCategoryChart';
 import ExpensesList from './ExpensesList';
 import ExpensesSorterLeft from './ExpensesSorterLeft';
 import ExpensesSorterRight from './ExpensesSorterRight';
@@ -51,7 +52,9 @@ const Expenses = (props) => {
   return (
     <div>
       <Card className='expenses'>
-        {isChartShown && <ExpensesChart filteredExpenses={filteredExpenses} />}
+        {isChartShown && (
+          <ExpensesByMonthChart filteredExpenses={filteredExpenses} />
+        )}
         <div style={{display: 'inline-flex'}}>
           <ExpensesSorterLeft onSort={sortExpensesHandler} />
           <ExpenseFilter
