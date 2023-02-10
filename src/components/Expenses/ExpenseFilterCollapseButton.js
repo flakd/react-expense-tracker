@@ -16,7 +16,7 @@ const ExpenseFilterCollapseButton = (props) => {
     <div>
       <button
         style={{marginLeft: '40px', color: 'white', backgroundColor: '#40005d'}}
-        id='sortAmountAsc'
+        id='toggleChartBtn'
         className='sort'
         onClick={onClickToggleCollapseButton}
       >

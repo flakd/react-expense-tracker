@@ -49,6 +49,16 @@ const Expenses = (props) => {
     }
   };
 
+  if (!props.isChartOpen && isChartShown) {
+    props.closeNewExpenseForm();
+  }
+  if (props.isChartOpen && !isChartShown) {
+    console.log('formOpen');
+    props.openNewExpenseForm();
+  }
+  console.log(props.isChartOpen);
+  //setIsChartShown(props.isChartOpen);
+
   return (
     <div>
       <Card className='expenses'>

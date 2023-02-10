@@ -18,9 +18,11 @@ const NewExpense = (props) => {
 
   const startEditingHandler = (e) => {
     setIsEditing(true);
+    props.onCloseChart();
   };
   const stopEditingHandler = (e) => {
     setIsEditing(false);
+    props.onOpenChart();
   };
 
   if (isEditing) {
@@ -28,6 +30,7 @@ const NewExpense = (props) => {
       '.expenses-list-container'
     );
     expensesListContainer.style.height = '23rem';
+    props.onCloseChart();
   }
   return (
     <div className='new-expense'>

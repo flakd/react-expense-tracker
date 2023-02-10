@@ -48,20 +48,34 @@ const App = () => {
   if (typeof maxId !== 'number') maxId = Math.random();
 
   let isEditing = false;
+  let isChartOpen = false;
   const closeNewExpenses = () => {
     isEditing = false;
   };
+  const openNewExpenses = () => {
+    isEditing = true;
+  };
+  const closeChart = () => {
+    isChartOpen = false;
+  };
+  const openChart = () => {
+    isChartOpen = true;
+  };
+
   return (
     <div>
       <NewExpense
         onAddExpense={addExpenseHandler}
         latestId={maxId}
-        openExpenseForm={isEditing}
+        onCloseChart={closeChart}
+        onOpenChart={openChart}
       />
       <Expenses
         items={expenses}
         onDeleteExpense={deleteExpenseHandler}
         closeNewExpenseForm={closeNewExpenses}
+        openNewExpenseForm={openNewExpenses}
+        isChartOpen={isChartOpen}
       />
     </div>
   );
