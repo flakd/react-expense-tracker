@@ -1,4 +1,4 @@
-import Chart from '../Chart/Chart';
+import CategoryChart from '../Chart/CategoryChart';
 
 const ExpensesChart = ({filteredExpenses}) => {
   const chartDataPoints = [
@@ -32,12 +32,13 @@ const ExpensesChart = ({filteredExpenses}) => {
     console.log('id: ', id);
   };
   return (
-    <div></div>
-    /*     <Chart
-      dataPoints={chartDataPoints}
-      grandTotal={monthlyExpensesTotal}
-      onChartSelected={onCategorySelected}
-    /> */
+    <div>
+      <CategoryChart
+        dataPoints={chartDataPoints}
+        grandTotal={monthlyExpensesTotal}
+        onChartSelected={onCategorySelected}
+      />
+    </div>
   );
 };
 
