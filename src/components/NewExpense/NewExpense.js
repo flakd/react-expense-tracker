@@ -1,10 +1,17 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import ExpenseForm from './ExpenseForm';
 import './NewExpense.css';
 
 const NewExpense = (props) => {
   //const [isEditing, setIsEditing] = useState(props.openExpenseForm);
-  const [isEditing, setIsEditing] = useState(props.isEditing);
+  //const [isEditing, setIsEditing] = useState(props.isEditing);
+  const [isEditing, setIsEditing] = useState(false);
+
+  useEffect(() => {
+    if (!props.isFormOpen) {
+      setIsEditing(false);
+    }
+  }, [props.isFormOpen]);
 
   const saveExpenseDataHandler = (enteredExpenseData) => {
     const expenseData = {

@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 import Card from '../UI/Card';
 import './Expenses.css';
@@ -16,6 +16,12 @@ const Expenses = (props) => {
   const [filteredYear, setFilteredYear] = useState('ALL');
   const [clickedButton, setClickedButton] = useState('sortAmountDsc');
   const [isChartShown, setIsChartShown] = useState(false);
+
+  useEffect(() => {
+    if (!props.isChartOpen) {
+      setIsChartShown(false);
+    }
+  }, [props.isChartOpen]);
 
   const filterChangeHandler = (selectedYear) => {
     console.log(selectedYear);
@@ -43,21 +49,12 @@ const Expenses = (props) => {
   };
 
   const toggleCollapseHandler = (e) => {
+    const flag = isChartShown;
     setIsChartShown(!isChartShown);
-    if (isChartShown) {
+    if (flag) {
       props.closeNewExpenseForm();
     }
   };
-
-  if (!props.isChartOpen && isChartShown) {
-    props.closeNewExpenseForm();
-  }
-  if (props.isChartOpen && !isChartShown) {
-    console.log('formOpen');
-    props.openNewExpenseForm();
-  }
-  console.log(props.isChartOpen);
-  //setIsChartShown(props.isChartOpen);
 
   return (
     <div>

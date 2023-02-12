@@ -5,6 +5,8 @@ import {expensesData} from './data/expensesData';
 
 const App = () => {
   const [expenses, setExpenses] = useState(expensesData);
+  const [isEditing, setIsEditing] = useState(true);
+  const [openMyChart, setOpenMyChart] = useState(true);
   /*uncomment if we're going to allow added new/deleting categories*/
   //const [categories, setCategories] = useState(categoriesData)
 
@@ -47,19 +49,17 @@ const App = () => {
   }
   if (typeof maxId !== 'number') maxId = Math.random();
 
-  let isEditing = false;
-  let isChartOpen = false;
   const closeNewExpenses = () => {
-    isEditing = false;
+    setIsEditing(false);
   };
   const openNewExpenses = () => {
-    isEditing = true;
+    setIsEditing(true);
   };
   const closeChart = () => {
-    isChartOpen = false;
+    setOpenMyChart(false);
   };
   const openChart = () => {
-    isChartOpen = true;
+    setOpenMyChart(true);
   };
 
   return (
@@ -69,13 +69,14 @@ const App = () => {
         latestId={maxId}
         onCloseChart={closeChart}
         onOpenChart={openChart}
+        isFormOpen={isEditing}
       />
       <Expenses
         items={expenses}
         onDeleteExpense={deleteExpenseHandler}
         closeNewExpenseForm={closeNewExpenses}
         openNewExpenseForm={openNewExpenses}
-        isChartOpen={isChartOpen}
+        isChartOpen={openMyChart}
       />
     </div>
   );
